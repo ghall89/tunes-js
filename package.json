@@ -1,0 +1,28 @@
+{
+  "name": "tunes-js",
+  "license": "MIT",
+  "version": "0.1.0",
+  "description": "A library for controlling Music.app on macOS.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "lint": "npx tsc",
+    "test": "npx ts-node examples/testing.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "@jxa/global-type": "^1.4.0",
+    "@swc/core": "^1.11.24",
+    "@types/node": "^22.15.17",
+    "changeset": "^0.2.6",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@jxa/run": "^1.4.0"
+  }
+}
