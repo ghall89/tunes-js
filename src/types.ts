@@ -8,7 +8,7 @@ export interface Track {
   duration: number;
 }
 
-export interface CurrentTrack extends Track {
+export interface NowPlaying extends Track {
   playerPosition: number;
 }
 
@@ -19,5 +19,15 @@ export interface PlayList {
 
 export interface ShuffleState {
   shuffleEnabled: boolean;
-  shuffleMode: "songs" | "albums" | "groupings" | undefined;
+  shuffleMode: ShuffleMode;
 }
+
+export type ShuffleMode = "songs" | "albums" | "groupings" | null;
+
+export type PlayerState =
+  | "stopped"
+  | "playing"
+  | "paused"
+  | "fast forwarding"
+  | "rewinding"
+  | null;

@@ -2,7 +2,13 @@ import "@jxa/global-type";
 import { run } from "@jxa/run";
 import os from "node:os";
 
-import { Track, CurrentTrack, PlayList, ShuffleState } from "./types";
+import {
+  Track,
+  NowPlaying,
+  PlayList,
+  ShuffleState,
+  PlayerState,
+} from "./types";
 
 /** Checks if the current environment is macOS/Darwin, and throws if false. */
 function darwinCheck() {
@@ -46,7 +52,7 @@ export async function launch(): Promise<void> {
 }
 
 /** Get currently playing track. Returns undefined if nothing is playing. */
-export async function getCurrentTrack(): Promise<CurrentTrack | null> {
+export async function getNowPlaying(): Promise<NowPlaying | null> {
   darwinCheck();
 
   try {
@@ -73,7 +79,7 @@ export async function getCurrentTrack(): Promise<CurrentTrack | null> {
         }
 
         return null;
-      })) as CurrentTrack;
+      })) as NowPlaying;
 
       return result;
     }
@@ -111,7 +117,7 @@ export async function getShuffleState(): Promise<ShuffleState | null> {
 }
 
 /** Get the current player state. */
-export async function getPlayerState(): Promise<string | null> {
+export async function getPlayerState(): Promise<PlayerState> {
   darwinCheck();
 
   try {
@@ -120,7 +126,7 @@ export async function getPlayerState(): Promise<string | null> {
         const Music = Application("Music");
 
         return Music.playerState();
-      })) as string;
+      })) as PlayerState;
 
       return result;
     }
