@@ -2,6 +2,10 @@
   "name": "tunes-js",
   "license": "MIT",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
   "description": "A library for controlling Music.app on macOS.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
