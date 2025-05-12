@@ -51,6 +51,8 @@ export async function launch(): Promise<void> {
   }
 }
 
+/**  */
+
 /** Get currently playing track. Returns undefined if nothing is playing. */
 export async function getNowPlaying(): Promise<NowPlaying | null> {
   darwinCheck();

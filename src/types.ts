@@ -1,5 +1,5 @@
 export interface Track {
-  id: string;
+  id: number;
   artwork: Blob;
   title: string;
   artist: string;

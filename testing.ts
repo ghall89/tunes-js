@@ -1,7 +1,7 @@
-import { getPlayerState } from "./src/index.ts";
+import { getNowPlaying } from "./src/index.ts";
 
 async function main() {
-  const result = await getPlayerState();
+  const result = await getNowPlaying();
 
   console.log(result);
 }

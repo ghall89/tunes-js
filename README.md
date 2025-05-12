@@ -30,7 +30,7 @@ Asyncronous function that retrieves the currently playing track. If nothing is p
 
 Returns an object with the following properties:
 
-__id:__ String, the track's unique ID.
+__id:__ Integer, the track's unique ID.
 __artwork:__ Image blob representing the tracks artwork.
 __title:__ String, the track's title.
 __artist:__ String, the track's artist.
