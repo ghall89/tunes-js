@@ -1,10 +1,10 @@
 {
   "name": "tunes-js",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
-    "url": "git+"
+    "url": "git+https://github.com/ghall89/tunes-js"
   },
   "description": "A library for controlling Music.app on macOS.",
   "main": "dist/index.js",
@@ -14,15 +14,17 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "lint": "npx tsc",
-    "test": "npx ts-node examples/testing.ts"
+    "test": "npm run build && node testing.js"
   },
   "keywords": [],
   "author": "",
   "devDependencies": {
     "@jxa/global-type": "^1.4.0",
     "@swc/core": "^1.11.24",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.15.17",
     "changeset": "^0.2.6",
+    "prettier": "^3.5.3",
     "ts-node": "^10.9.2",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3"

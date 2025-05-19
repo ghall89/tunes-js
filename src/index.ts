@@ -1,21 +1,21 @@
-import "@jxa/global-type";
-import { run } from "@jxa/run";
-import os from "node:os";
+import '@jxa/global-type';
+import { run } from '@jxa/run';
+import os from 'node:os';
 
 import {
-  Track,
   NowPlaying,
   PlayList,
-  ShuffleState,
   PlayerState,
-} from "./types";
+  RepeatMode,
+  ShuffleState,
+} from './types';
 
 /** Checks if the current environment is macOS/Darwin, and throws if false. */
 function darwinCheck() {
   const platform = os.platform();
 
-  if (platform !== "darwin") {
-    throw new Error("This package requires a macOS environment.");
+  if (platform !== 'darwin') {
+    throw new Error('This package requires a macOS environment.');
   }
 }
 
@@ -25,7 +25,7 @@ export async function isRunning(): Promise<Boolean> {
 
   try {
     const result = (await run(() => {
-      const Music = Application("Music");
+      const Music = Application('Music');
       return Music.running();
     })) as boolean;
 
@@ -42,7 +42,7 @@ export async function launch(): Promise<void> {
   try {
     if (!(await isRunning())) {
       await run(() => {
-        const Music = Application("Music");
+        const Music = Application('Music');
         Music.open();
       });
     }
@@ -60,8 +60,8 @@ export async function getNowPlaying(): Promise<NowPlaying | null> {
   try {
     if (await isRunning()) {
       const result = (await run(() => {
-        const Music = Application("Music");
-        if (Music.playerState() === "playing") {
+        const Music = Application('Music');
+        if (Music.playerState() === 'playing') {
           const { currentTrack, playerPosition } = Music;
 
           if (!currentTrack) {
@@ -92,6 +92,48 @@ export async function getNowPlaying(): Promise<NowPlaying | null> {
   }
 }
 
+/** Get the current player state. */
+export async function getPlayerState(): Promise<PlayerState> {
+  darwinCheck();
+
+  try {
+    if (await isRunning()) {
+      const result = (await run(() => {
+        const Music = Application('Music');
+
+        return Music.playerState();
+      })) as PlayerState;
+
+      return result;
+    }
+
+    return null;
+  } catch (err) {
+    throw err;
+  }
+}
+
+/** Get the current player state. */
+export async function getRepeatMode(): Promise<RepeatMode> {
+  darwinCheck();
+
+  try {
+    if (await isRunning()) {
+      const result = (await run(() => {
+        const Music = Application('Music');
+
+        return Music.songRepeat();
+      })) as RepeatMode;
+
+      return result;
+    }
+
+    return null;
+  } catch (err) {
+    throw err;
+  }
+}
+
 /** Get whether shuffle is on. If so, also get the shuffle mode. */
 export async function getShuffleState(): Promise<ShuffleState | null> {
   darwinCheck();
@@ -99,7 +141,7 @@ export async function getShuffleState(): Promise<ShuffleState | null> {
   try {
     if (await isRunning()) {
       const result = (await run(() => {
-        const Music = Application("Music");
+        const Music = Application('Music');
 
         console.log(Music);
 
@@ -118,27 +160,6 @@ export async function getShuffleState(): Promise<ShuffleState | null> {
   }
 }
 
-/** Get the current player state. */
-export async function getPlayerState(): Promise<PlayerState> {
-  darwinCheck();
-
-  try {
-    if (await isRunning()) {
-      const result = (await run(() => {
-        const Music = Application("Music");
-
-        return Music.playerState();
-      })) as PlayerState;
-
-      return result;
-    }
-
-    return null;
-  } catch (err) {
-    throw err;
-  }
-}
-
 /** Get all playlists and returns an array. */
 export async function getPlaylists(): Promise<PlayList[]> {
   darwinCheck();
@@ -146,7 +167,7 @@ export async function getPlaylists(): Promise<PlayList[]> {
   try {
     if (await isRunning()) {
       const result = (await run(() => {
-        const Music = Application("Music");
+        const Music = Application('Music');
 
         const playlists = Music.playlists();
 

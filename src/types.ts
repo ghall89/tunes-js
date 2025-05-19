@@ -22,12 +22,14 @@ export interface ShuffleState {
   shuffleMode: ShuffleMode;
 }
 
-export type ShuffleMode = "songs" | "albums" | "groupings" | null;
+export type ShuffleMode = 'songs' | 'albums' | 'groupings' | null;
+
+export type RepeatMode = 'off' | 'one' | 'all' | null;
 
 export type PlayerState =
-  | "stopped"
-  | "playing"
-  | "paused"
-  | "fast forwarding"
-  | "rewinding"
+  | 'stopped'
+  | 'playing'
+  | 'paused'
+  | 'fast forwarding'
+  | 'rewinding'
   | null;
