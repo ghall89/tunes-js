@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "git+"
+    "url": "git+https://github.com/ghall89/tunes-js"
   },
   "description": "A library for controlling Music.app on macOS.",
   "main": "dist/index.js",
